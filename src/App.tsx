@@ -8,6 +8,7 @@ import Alunos from "./pages/pagesEscola/Alunos"
 import Turmas from "./pages/pagesEscola/Turmas"
 import HomeProfessor from "./pages/professor/HomeProfessor"
 import AtividadesProfessores from "./pages/professor/AtividadesProfessor"
+import CadastroTurmas from "./pages/professor/CadastroTurmas";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
         <Route path="/alunos" element={<Alunos />} />
         <Route path="/turmas" element={<Turmas />} />
         <Route path="professor/home" element={<HomeProfessor />} />
-        <Route path="professores/atividades" element={<AtividadesProfessores />} /> 
+        <Route path="professores/atividades" element={<AtividadesProfessores />} />
+        <Route path="/professores/turmas" element={<CadastroTurmas />} />
       </Routes>
     </BrowserRouter>
   )
