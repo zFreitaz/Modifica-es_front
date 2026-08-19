@@ -2,10 +2,35 @@ import { useState } from "react";
 import LayoutBaseProf from "../../components/calendar/layout/LayoutBaseProf";
 import InfoHeader from "../../components/escola/InfoHeader";
 import SearchActionBar from "../../components/escola/SearchActionBar";
+import { useNavigate } from "react-router-dom";
+
+interface TurmaItem {
+  id: number;
+  nome: string;
+  alunos: number;
+  pendentes: number | null;
+  progresso: number;
+}
+
+const turmasMock: TurmaItem[] = [
+  { id: 1, nome: "3º ano A", alunos: 10, pendentes: 3, progresso: 70 },
+  { id: 2, nome: "2º ano B", alunos: 9, pendentes: null, progresso: 90 },
+  { id: 3, nome: "3º ano C", alunos: 12, pendentes: 6, progresso: 50 },
+  { id: 4, nome: "1º ano A", alunos: 11, pendentes: 1, progresso: 77 },
+  { id: 5, nome: "1º ano B", alunos: 7, pendentes: 2, progresso: 68 },
+  { id: 6, nome: "2º ano C", alunos: 8, pendentes: null, progresso: 98 },
+];
 
 export default function CadastroTurmas() {
-  
+ 
+  const navigate = useNavigate();
   const [busca, setBusca] = useState("");
+  const [turmas, setTurmas] = useState<TurmaItem[]>(turmasMock);
+
+  // Filtro de turmas por nome em tempo real
+  const turmasFiltradas = turmas.filter((t) =>
+    t.nome.toLowerCase().includes(busca.toLowerCase())
+  );
 
   return (
     <LayoutBaseProf>
