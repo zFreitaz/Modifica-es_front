@@ -56,6 +56,49 @@ export default function CadastroTurmas() {
         buttonLabel="Nova turma"
         onButtonClick={() => alert("Abrir modal de cadastro de turma")}
       />
+
+      {/* Tabela de Turmas */}
+      <div className="tableContainer !max-h-none !overflow-hidden">
+        <table className="customTable">
+          <thead>
+            <tr>
+              <th className="w-[26%] !py-3.5">Turma</th>
+              <th className="text-center w-[12%] !py-3.5">Alunos</th>
+              <th className="text-center w-[14%] !py-3.5">Pendentes</th>
+              <th className="text-center w-[30%] !py-3.5">Progresso</th>
+              <th className="text-center w-[18%] !py-3.5">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {turmasFiltradas.length === 0 ? (
+              <tr>
+                <td colSpan={5} className="text-center py-8 text-neutral-400 text-sm">
+                  Nenhuma turma encontrada.
+                </td>
+              </tr>
+            ) : (
+              turmasFiltradas.map((turma) => (
+                <tr key={turma.id} className="hover:bg-neutral-50/40 transition-colors">
+
+                  {/* Coluna 1: Nome da Turma + Ícone */}
+                  <td className="!py-2.5">
+                    <div className="cellNone">
+                      <div className="w-[38px] h-[38px] rounded-full bg-[#FFD8C9] flex intem-center justify-center text-brand-teal shrink-0">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"></svg>
+                        <path d="M12 3L2 8L12 13L22 8L12 3Z"/>
+                        <path d="M5 11.5V15.5C5 17.5 8 19 12 19C16 19 19 17.5 19 15.5V11.5L12 15L5 11.5Z"/>
+                      </div>
+                    </div>
+                    <span className="font-semibold text-neutral-800 text-sm">
+                      {turma.nome}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </LayoutBaseProf>
   );
 }
